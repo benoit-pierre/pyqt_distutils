@@ -98,7 +98,7 @@ Here is a brief description of the fields:
 - pyuic: the name of the pyuic tool to use (e.g: 'pyrcc4' or 'pyside-rcc')
 
 
-Starting from version 3.0, you can use a *glob expression* instead of a file path.
+Starting from version 0.3, you can use a *glob expression* instead of a file path.
 E.g., to compile all ui files under the ``forms`` directory in ``package/forms``, you could
 write the following pyuic.json:
 
