@@ -117,6 +117,28 @@ write the following pyuic.json:
         "pyuic_options": "--from-imports"
     }
 
+
+Starting from version 0.7.3, you can use `$PYTHON` or `${PYTHON}` in the pyrcc
+or pyuic fields. It will automatically be replaced by the current Python
+interpreter (`sys.executable`). This can be used with recent versions of PyQt5
+to make the configuration more portable (across different Python versions
+and/or differently named tools) by setting pyrcc/pyuic like this:
+
+.. code-block:: json
+
+    {
+        "files": [
+            [
+                "forms/*.ui",
+                "package/forms"
+            ]
+        ],
+        "pyrcc": "$PYTHON -m PyQt5.pyrcc_main",
+        "pyrcc_options": "",
+        "pyuic": "$PYTHON -m PyQt5.uic.pyuic",
+        "pyuic_options": "--from-imports"
+    }
+
 Hooks
 -----
 

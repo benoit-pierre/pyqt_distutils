@@ -2,7 +2,9 @@
 Contains the config class (pyuic.cfg or pyuic.json)
 
 """
+import sys
 import json
+from string import Template
 
 from .utils import write_message
 
@@ -10,6 +12,10 @@ class QtApi:
     pyqt4 = 0
     pyqt5 = 1
     pyside = 2
+
+
+def _substitute_interpreter(command):
+    return Template(command).substitute({'PYTHON': sys.executable})
 
 
 class Config:
@@ -22,10 +28,10 @@ class Config:
         self.hooks = []
 
     def uic_command(self):
-        return self.pyuic + ' ' + self.pyuic_options + ' %s -o %s'
+        return _substitute_interpreter(self.pyuic) + ' ' + self.pyuic_options + ' %s -o %s'
 
     def rcc_command(self):
-        return self.pyrcc + ' ' + self.pyrcc_options + ' %s -o %s'
+        return _substitute_interpreter(self.pyrcc) + ' ' + self.pyrcc_options + ' %s -o %s'
 
     def load(self):
         for ext in ['.cfg', '.json']:
